@@ -92,7 +92,9 @@ import (
  */
 
 func hourglassSum(arr [][]int32) int32 {
-	maxSum := int32(0)
+	maxSum := int32(-63) // the minimum value of the hourglass is -9 * 7 = -63, so we set the maxSum to -63
+	// because the hourglass can be negative, and if we set this to 0, we will get the wrong answer while comparing
+	// the maxSum with the sum of the hourglass
 
 	for i := 0; i < len(arr)-2; i++ {
 		for j := 0; j < len(arr[i])-2; j++ {
