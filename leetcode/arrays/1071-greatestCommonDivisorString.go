@@ -16,6 +16,8 @@
 // Output: ""
 package leetcodeArrayChallenges
 
+import "fmt"
+
 func gcd(a, b int) int {
 	if b == 0 {
 		return a
@@ -31,5 +33,6 @@ func GcdOfStrings(str1 string, str2 string) string {
 	if str1+str2 == str2+str1 && substr == str2[:g] {
 		return substr
 	}
+	fmt.Println("Hello, playground")
 	return ""
 }
