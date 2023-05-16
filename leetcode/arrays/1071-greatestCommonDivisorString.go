@@ -16,23 +16,31 @@
 // Output: ""
 package leetcodeArrayChallenges
 
-import "fmt"
+func GcdOfStrings(str1 string, str2 string) string {
+	lenA := len(str1)
+	lenB := len(str2)
 
-func gcd(a, b int) int {
+	// now we need to find the greatest common divisor between the two lengths
+	gcd := gdcCalculator(lenA, lenB)
+
+	// get the substring by slice of the str1 until the gcd index
+	substring := str1[:gcd]
+
+	// if concatenating str1 and str2 is equal to the inverse (str2 + str1) AND the substring is equal to the slice of the str2 until
+	// index of gcd, means that the substring is the greatest divider of both string
+	if str1+str2 == str2+str1 && substring == str2[:gcd] {
+		return substring
+	} else {
+		return ""
+	}
+
+}
+
+// function gets the greates common divisor by recursively calling itself to check if the remaining of the division of elements is == 0
+// which means that the 'a' parameter is the greatest common divisor
+func gdcCalculator(a, b int) int {
 	if b == 0 {
 		return a
 	}
-	return gcd(b, a%b)
-}
-
-func GcdOfStrings(str1 string, str2 string) string {
-	len1 := len(str1)
-	len2 := len(str2)
-	g := gcd(len1, len2)
-	substr := str1[:g]
-	if str1+str2 == str2+str1 && substr == str2[:g] {
-		return substr
-	}
-	fmt.Println("Hello, playground")
-	return ""
+	return gdcCalculator(b, a%b)
 }
