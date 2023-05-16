@@ -9,4 +9,5 @@ import (
 func main() {
 	fmt.Println(arrays.MergeAlternately("ilv ", " oeu"))
 	fmt.Println(arrays.GcdOfStrings("ABCABCABC", "ABC"))
+	fmt.Println(arrays.KidsWithCandies([]int{1, 2, 0, 4, 5}, 2))
 }
