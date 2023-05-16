@@ -21,7 +21,7 @@
 // merged: a p b q   r   s
 package leetcodeArrayChallenges
 
-func mergeAlternately(word1 string, word2 string) string {
+func MergeAlternately(word1 string, word2 string) string {
 	biggestWord, smallestWord := biggestAndSmallestWord(word1, word2)
 
 	var mergedString string

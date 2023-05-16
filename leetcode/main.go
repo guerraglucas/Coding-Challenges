@@ -7,5 +7,6 @@ import (
 )
 
 func main() {
+	fmt.Println(arrays.MergeAlternately("hahahahahha", "hehehe"))
 	fmt.Println(arrays.GcdOfStrings("AAAAAAAAA", "AAACCC"))
 }
