@@ -19,6 +19,7 @@ func main() {
 	// fmt.Println(mockAss.DistributeCandies([]int{2, 4, 5, 12, 1, 3, 4, 5, 6, 8}))
 	printTree(mockAss.TrimBST(&mockAss.TreeNode{Val: 3, Left: &mockAss.TreeNode{Val: 0, Left: nil, Right: &mockAss.TreeNode{Val: 2, Left: &mockAss.TreeNode{Val: 1}}}, Right: &mockAss.TreeNode{Val: 4}}, 1, 3))
 	printTree(mockAss.TrimBST(&mockAss.TreeNode{Val: 1, Left: &mockAss.TreeNode{Val: 0, Left: nil, Right: nil}, Right: &mockAss.TreeNode{Val: 2}}, 1, 2))
+	fmt.Println(mockAss.OrangesRotting([][]int{{2, 0, 1}, {1, 2, 1}, {0, 0, 1}}))
 }
 
 func printTree(node *mockAss.TreeNode) {
