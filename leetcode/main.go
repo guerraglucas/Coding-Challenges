@@ -5,7 +5,8 @@ import (
 
 	// arrays "github.com/guerraglucas/Coding-Challenges/leetcode/arrays"
 	mockAss "github.com/guerraglucas/Coding-Challenges/leetcode/mockAssessment"
-	twoPointers "github.com/guerraglucas/Coding-Challenges/leetcode/twoPointers"
+	// twoPointers "github.com/guerraglucas/Coding-Challenges/leetcode/twoPointers"
+	slidingWindow "github.com/guerraglucas/Coding-Challenges/leetcode/slidingWindow"
 )
 
 func main() {
@@ -25,7 +26,8 @@ func main() {
 	// fmt.Println(mockAss.OrangesRotting([][]int{{2, 0, 1}, {1, 2, 1}, {0, 0, 1}}))
 	// fmt.Println(mockAss.RemoveElement([]int{2, 4, 41, 1, 2, 3, 4}, 2))
 	// fmt.Println(mockAss.CombinationSum([]int{2, 3, 6, 7}, 7))
-	twoPointers.MoveZeroes([]int{0, 0, 1})
+	// twoPointers.MoveZeroes([]int{0, 0, 1})
+	fmt.Println(slidingWindow.FindMaxAverage([]int{1, 12, -5, -6, 50, 3}, 4))
 
 }
 
