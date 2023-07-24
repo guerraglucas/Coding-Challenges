@@ -82,6 +82,7 @@ func arrayManipulation(n int32, queries [][]int32) int64 {
 			baseSlice[endingIndex] -= valueToAdd
 		}
 	}
+	fmt.Println(baseSlice)
 	for _, value := range baseSlice {
 		prefixSum += value
 		if prefixSum > maxValue {
