@@ -78,7 +78,7 @@ func countSwaps(a []int32) {
 			}
 		}
 	}
-	fmt.Printf("Array is sorted in %d swaps\n", swapCount)
+	fmt.Printf("Array is sorted in %d swaps.\n", swapCount)
 	fmt.Printf("First Element: %d\n", a[0])
 	fmt.Printf("Last Element: %d\n", a[len(a)-1])
 }
