@@ -93,15 +93,31 @@ import (
 // Complete the freqQuery function below.
 func freqQuery(queries [][]int32) []int32 {
 	mapOfElements := make(map[int32]int32)
+	freqCount := make(map[int32]int32)
 	arrOfOperation := []int32{}
 	for _, query := range queries {
 		if query[0] == 1 {
 			mapOfElements[query[1]]++
+			freqCount[mapOfElements[query[1]]-1]--
+			freqCount[mapOfElements[query[1]]]++
 		}
 		if query[0] == 2 {
-			mapOfElements[query[1]]--
+			if mapOfElements[query[1]] > 0 {
+				mapOfElements[query[1]]--
+				freqCount[mapOfElements[query[1]]+1]--
+				freqCount[mapOfElements[query[1]]]++
+			}
+		}
+		if query[0] == 3 {
+			if freqCount[query[1]] > 0 {
+				arrOfOperation = append(arrOfOperation, 1)
+			} else {
+				arrOfOperation = append(arrOfOperation, 0)
+			}
+
 		}
 	}
+	return arrOfOperation
 
 }
 
