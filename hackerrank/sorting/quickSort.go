@@ -30,31 +30,40 @@ import (
 
 func maximumToys(prices []int32, k int32) int32 {
 	// Write your code here
-	count := int32(0)
-	sumPrices := int32(0)
-	bubbleSort(&prices)
-
-	for _, value := range prices {
-		if sumPrices+value <= k {
-			sumPrices += value
-			count++
-		} else {
-			break
+	quickSort(&prices, 0, len(prices)-1)
+	priceSum := int32(0)
+	numOfToys := int32(0)
+	for _, price := range prices {
+		if priceSum+price <= k {
+			numOfToys++
+			priceSum += price
+			continue
 		}
+		break
 	}
-
-	return count
-
+	return numOfToys
 }
 
-func bubbleSort(arr *[]int32) {
-	for i := 0; i < len(*arr); i++ {
-		for j := 0; j < len(*arr)-1; j++ {
-			if (*arr)[j] > (*arr)[j+1] {
-				(*arr)[j], (*arr)[j+1] = (*arr)[j+1], (*arr)[j]
-			}
+func quickSort(arr *[]int32, start int, finish int) {
+	if start < finish {
+		pivotIndex := partition(arr, start, finish)
+
+		quickSort(arr, start, pivotIndex-1)
+		quickSort(arr, pivotIndex+1, finish)
+	}
+}
+
+func partition(arr *[]int32, start int, finish int) int {
+	pivot := (*arr)[finish]
+	pivotIndex := start
+	for greaterThanPivotIndex := start; greaterThanPivotIndex < finish; greaterThanPivotIndex++ {
+		if (*arr)[greaterThanPivotIndex] <= pivot {
+			(*arr)[greaterThanPivotIndex], (*arr)[pivotIndex] = (*arr)[pivotIndex], (*arr)[greaterThanPivotIndex]
+			pivotIndex++
 		}
 	}
+	(*arr)[pivotIndex], (*arr)[finish] = (*arr)[finish], (*arr)[pivotIndex]
+	return pivotIndex
 }
 
 func main() {
