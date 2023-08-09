@@ -4,6 +4,11 @@
 // 3. if both have even lenghts, the longer of the two should precede
 // 4. if the lenghts are the same, the strings should be in alphabetical order
 
+//
+// Example:
+// Input: ["abc", "ab", "abcde", "a", "abcd"]
+// Output: ["a", "abc", "abcde", "abcd", "ab"]
+
 package main
 
 import (
