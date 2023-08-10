@@ -47,14 +47,17 @@ func isBalanced(s string) string {
 			stack = append(stack, string(s[i]))
 			continue
 		}
-		// if the current element is a closing bracket, verify if the top element of the stack is an opening bracket of the same kind
+		// the current element is a enclosing bracket
+		// if the stack is currently empty or the current element is different from the expected enclosing bracket, return NO
 		if len(stack) == 0 || string(s[i]) != mapOfBrackets[stack[len(stack)-1]] {
-			// if yes, remove the top element from the stack
 			return "NO"
 		}
+		// if the code reaches here, it means that the current element matches the expected enclosing bracket
+		// remove the top element from the stack
 		stack = stack[:len(stack)-1]
 	}
 
+	// confirms that at the end of the code the stack is empty, which is expected, then returns YES
 	if len(stack) == 0 {
 		return "YES"
 	}
