@@ -35,6 +35,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -47,17 +48,17 @@ import (
  *  1. INTEGER_ARRAY expenditure
  *  2. INTEGER d
  */
-
 func activityNotifications(expenditure []int32, d int32) int32 {
 	// Write your code here
 
 	// create a sliding window
 	left := int32(0)
-	right := d - 1
+	right := d
 	countOfNotification := int32(0)
-	for right < int32(len(expenditure)-1) {
-		todayExp := expenditure[right+1]
-		if todayExp >= median(expenditure[left:right]) {
+	for right < int32(len(expenditure)) {
+		todayExp := expenditure[right]
+		fmt.Println(median(expenditure[left:right]))
+		if todayExp >= int32(median(expenditure[left:right])*2) {
 			countOfNotification++
 		}
 		left++
@@ -66,24 +67,21 @@ func activityNotifications(expenditure []int32, d int32) int32 {
 	return countOfNotification
 }
 
-func median(arr []int32) int32 {
-	arrIsOdd := len(arr)%2 != 0
-	for i := 0; i < len(arr); i++ {
-		for j := i; j < len(arr); j++ {
-			if arr[i] < arr[j] {
-				swap(&arr[i], &arr[j])
-			}
-		}
-	}
-	if arrIsOdd {
-		return arr[len(arr)/2]
-	} else {
-		return (arr[len(arr)/2-1] + arr[len(arr)/2]) / 2
-	}
-}
+func median(arr []int32) float64 {
+	newArr := make([]int32, len(arr))
+	copy(newArr, arr)
+	arrIsOdd := len(newArr)%2 != 0
+	sort.Slice(newArr, func(i, j int) bool {
+		return newArr[i] < newArr[j]
+	})
 
-func swap(arrI *int32, arrJ *int32) {
-	*arrI, *arrJ = *arrJ, *arrI
+	if arrIsOdd {
+		return float64(newArr[len(newArr)/2])
+	} else {
+		middleLeft := newArr[len(newArr)/2-1]
+		middleRight := newArr[len(newArr)/2]
+		return float64(middleLeft+middleRight) / 2
+	}
 }
 
 func main() {
