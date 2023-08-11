@@ -50,11 +50,16 @@ import (
  */
 func activityNotifications(expenditure []int32, d int32) int32 {
 	// Write your code here
-
-	// create a sliding window
-	left := int32(0)
-	right := d
+	// check the notification case for the first d days
 	countOfNotification := int32(0)
+
+	medianFirstDDays := median(expenditure[:d])
+	if expenditure[d] >= int32(2*medianFirstDDays) {
+		countOfNotification++
+	}
+	// create a sliding window
+	left := d
+	right := left + d - 1
 	for right < int32(len(expenditure)) {
 		todayExp := expenditure[right]
 		fmt.Println(median(expenditure[left:right]))
