@@ -58,8 +58,8 @@ func activityNotifications(expenditure []int32, d int32) int32 {
 		countOfNotification++
 	}
 	// create a sliding window
-	left := d
-	right := left + d - 1
+	left := int32(1)
+	right := left + d
 	for right < int32(len(expenditure)) {
 		todayExp := expenditure[right]
 		fmt.Println(median(expenditure[left:right]))
