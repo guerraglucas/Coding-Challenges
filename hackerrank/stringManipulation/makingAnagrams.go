@@ -35,55 +35,47 @@ import (
  */
 
 func makeAnagram(a string, b string) int32 {
-	// create a map for each string
-	mapA := make(map[rune]int32)
-	mapB := make(map[rune]int32)
-	// create a map for the result
-	resultMap := make(map[rune]int32)
-	for _, char := range a {
-		mapA[char]++
+	mapStringA := make(map[rune]int)
+	mapStringB := make(map[rune]int)
+	sumOfDeletions := int32(0)
+
+	for _, rune := range a {
+		mapStringA[rune]++
 	}
-	for _, char := range b {
-		mapB[char]++
+	for _, rune := range b {
+		mapStringB[rune]++
 	}
-	// iterate over the first map
-	for key, countA := range mapA {
-		// if the key is in the second map, check the value
-		countB, exists := mapB[key]
-		if exists {
-			// Character exists in both strings
-			resultMap[key] = abs(countA - countB)
+
+	for key, value := range mapStringA {
+		if _, ok := mapStringB[key]; ok {
+			if value == mapStringB[key] {
+				continue
+			}
+			sumOfDeletions += int32(returnAbsoluteValue(value, mapStringB[key]))
 		} else {
-			// if the key is not in the second map, add the value to the result map
-			// Character only exists in string a
-			resultMap[key] = countA
+			sumOfDeletions += int32(value)
 		}
 	}
-	// iterate over the second map
-	for key, countB := range mapB {
-		_, exists := mapA[key]
-		// if the key is in the first map, check the value
-		if !exists {
-			// if the key is not in the first map, add the value to the result map
-			// Character only exists in string b
-			resultMap[key] = countB
+	for key, value := range mapStringB {
+		if _, ok := mapStringA[key]; ok {
+			if value == mapStringA[key] {
+				continue
+			}
+			sumOfDeletions += int32(returnAbsoluteValue(value, mapStringA[key]))
+		} else {
+			sumOfDeletions += int32(value)
 		}
 	}
-	// iterate over the result map and sum the values
-	// return the sum
-	var sum int32
-	for _, value := range resultMap {
-		sum += value
-	}
-	return sum
+	return sumOfDeletions
 }
 
-func abs(x int32) int32 {
-	if x < 0 {
-		return -x
+func returnAbsoluteValue(a, b int) int {
+	if a-b <= 0 {
+		return 0
 	}
-	return x
+	return a - b
 }
+
 func main() {
 	reader := bufio.NewReaderSize(os.Stdin, 16*1024*1024)
 
