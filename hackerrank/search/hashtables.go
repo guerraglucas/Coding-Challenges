@@ -48,25 +48,16 @@ import (
 func whatFlavors(cost []int32, money int32) {
 	// Write your code here
 
-	var firstFlavorId int32
-	var secondFlavorId int32
+	mapOfFlavors := make(map[int32]int32)
+	for index, flavor := range cost {
+		remaining := money - flavor
 
-	for i := int32(0); i < int32(len(cost)); i++ {
-		firstFlavorId = i
-		if cost[firstFlavorId] >= money {
-			continue
+		if _, ok := mapOfFlavors[remaining]; ok {
+			fmt.Println(mapOfFlavors[remaining]+1, index+1)
+			break
 		}
-		for j := firstFlavorId + 1; j < int32(len(cost)); j++ {
-			secondFlavorId = j
-			if cost[secondFlavorId] >= money {
-				continue
-			}
 
-			if money-(cost[firstFlavorId]+cost[secondFlavorId]) == 0 {
-				fmt.Println(firstFlavorId+1, secondFlavorId+1)
-				return
-			}
-		}
+		mapOfFlavors[flavor] = int32(index)
 	}
 }
 
